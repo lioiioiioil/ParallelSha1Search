@@ -1,0 +1,20 @@
+4. std::thread
+Все команды выполняются из папки этого задания.
+Ввод: правильный SHA1 в нижнем регистре. Ответ примера: 000000a.
+
+MAC/LINUX
+c++ -O2 -std=c++17 -pthread main.cpp -o std_thread
+echo 28a2f4f4403abf7b4e9bea6683a82ad529aca211 | ./std_thread
+
+WINDOWS: Developer Command Prompt
+cl /nologo /O2 /std:c++17 /EHsc /utf-8 main.cpp /Fe:std_thread.exe
+echo 28a2f4f4403abf7b4e9bea6683a82ad529aca211| std_thread.exe
+
+Пароль — SHA1:
+0000000 — 4e079d0555e5a2b460969c789d3ad968a795921f
+0000008 — 91f4b3a9f5d51ec892379d3a7a2b7fc5e2a54121
+000000a — 28a2f4f4403abf7b4e9bea6683a82ad529aca211
+000000A — 65076b3499adf0ed3d4cfb5bb1acad6784467bf9
+0000010 — bc352f41cfe33ed24fb3f81161879f2773ea70c5
+
+Для ручного ввода запусти программу без echo и введи хеш по запросу SHA1:.
