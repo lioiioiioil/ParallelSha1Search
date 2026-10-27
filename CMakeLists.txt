@@ -38,3 +38,14 @@ if(ENABLE_CUDA)
     add_executable(cuda_search implementations/cuda/main.cu)
     set_target_properties(cuda_search PROPERTIES CUDA_STANDARD 17 CUDA_STANDARD_REQUIRED ON)
 endif()
+
+include(CTest)
+if(BUILD_TESTING)
+    find_package(Python3 3.8 COMPONENTS Interpreter QUIET)
+    if(Python3_Interpreter_FOUND)
+        add_test(NAME base_implementations
+            COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/scripts/smoke_test.py
+                --build-dir $<TARGET_FILE_DIR:serial>)
+        set_tests_properties(base_implementations PROPERTIES TIMEOUT 90)
+    endif()
+endif()

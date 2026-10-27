@@ -24,7 +24,11 @@
 
 ## Быстрый старт
 
+Понадобятся компилятор C++17, CMake ≥ 3.18 и поддержка потоков для вашей платформы. Для smoke-проверок нужен Python ≥ 3.8. Базовая сборка не использует внешнюю библиотеку SHA-1: заголовки `sha1.hpp` находятся рядом с реализациями.
+
 ```bash
+git clone https://github.com/lioiioiioil/ParallelSha1Search.git
+cd ParallelSha1Search
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build --parallel
 printf '28a2f4f4403abf7b4e9bea6683a82ad529aca211\n' | ./build/std_thread
@@ -46,6 +50,8 @@ printf '28a2f4f4403abf7b4e9bea6683a82ad529aca211\n' | mpiexec -n 9 ./build-mpi/m
 
 ```bash
 python3 scripts/smoke_test.py --build-dir build
+# Или, если Python найден при конфигурации CMake:
+ctest --test-dir build --output-on-failure
 ```
 
 Скрипт проверяет базовые реализации для текущей платформы на трёх коротких примерах с известными ответами; каждый запуск ограничен по времени. Для многоконфигурационной сборки укажите `--build-dir build/Release`.
